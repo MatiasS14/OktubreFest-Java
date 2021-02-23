@@ -1,19 +1,19 @@
 package oktubreFest;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.List;
+import java.util.LinkedList;
 
 public abstract class Persona {
 	protected Integer pesoEnKilos;
 	protected Boolean leGustaLaMusica;
 	protected Integer nivelDeAguante;
-	protected Set<Jarra> jarrasCompradas;
+	protected List<Jarra> jarrasCompradas;
 	protected String paisPersona;
 	
 	public Persona(Integer peso, Boolean leGustaMusica, Integer nivelAguante) {
 		this.pesoEnKilos = peso;
 		this.leGustaLaMusica = leGustaMusica;
 		this.nivelDeAguante = nivelAguante;
-		this.jarrasCompradas = new HashSet<Jarra>();
+		this.jarrasCompradas = new LinkedList<Jarra>();
 	}
 	
 	public Boolean estaEbria() {
@@ -62,17 +62,19 @@ public abstract class Persona {
 	//Funciones auxiliares
 	//Proposito : retorna un set con los paises de las jarras
 	// 			 bebidas hasta el momento
-	private Set<String> paisDeCervezasBebidas(){
-		Set<String> paises = new HashSet<String>();
+	private List<String> paisDeCervezasBebidas(){
+		List<String> paises = new LinkedList<String>();
 		for(Jarra jarra : this.jarrasCompradas) {
-			paises.add(jarra.marcaCerveza().paisFabricacion());
+			if(!paises.contains(jarra.marcaCerveza().paisFabricacion())) {
+				paises.add(jarra.marcaCerveza().paisFabricacion());
+		    }
 		}
 	 return paises;
 	}
 	//Proposito : retorna el pais de origen de la persona
 	protected abstract String pais();
 	
-	public Set<Jarra> jarrasCompradas(){
+	public List<Jarra> jarrasCompradas(){
 		return this.jarrasCompradas;
 	}
 	
