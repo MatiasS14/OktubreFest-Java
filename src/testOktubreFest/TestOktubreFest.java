@@ -68,7 +68,7 @@ class TestOktubreFest {
 		//Carpas
 	carpaQuilmesRubia = new Carpa(30, true, quilmesRubia);
 	carpaQuilmesNegra= new Carpa(30, true, quilmesNegra);
-	carpaQuilmesRoja= new Carpa(30, true, quilmesRoja);
+	carpaQuilmesRoja= new Carpa(3, true, quilmesRoja);
 	carpaCorona = new Carpa(3, false, corona);
 	/////////////////////////////////////////////////////////////////
 		//Jarras de 1 litro (la capacidad de la jarra es en mililitros 1000ml = 1lts)
@@ -121,9 +121,112 @@ class TestOktubreFest {
 		assertEquals(75, jarraQuilmesNMedioLitro.contenidoAlcoholico());
 
 		//contenidoAlcoholico de jarra de cerveza Roja de 1/2 litro
-		assertEquals(93.75f, jarraQuilmesRojMedioLitro.contenidoAlcoholico());
-		
-		
+		assertEquals(93.75f, jarraQuilmesRojMedioLitro.contenidoAlcoholico());		
 	}
+	
+	@Test
+	void testCantidadAlcoholIngerido() {
+		aleman1.consumirJarra(jarraCoronaLitro);
+		aleman1.consumirJarra(jarraCoronaLitro);
+		aleman1.consumirJarra(jarraCoronaLitro);
+		assertEquals(3000, aleman1.totalLitrosIngeridos());
+	}
+	@Test
+	void personaEstaEbria() {
+		assertFalse(aleman1.estaEbria());
+		aleman1.consumirJarra(jarraQuilmesNLitro);
+		aleman1.consumirJarra(jarraQuilmesRLitro);
+		assertTrue(aleman1.estaEbria());		
+	}
+	
+	@Test
+	void personaQuiereEntrarEnCarpa() {
+		assertTrue(checo2.quiereEntrar(carpaQuilmesNegra));
+		assertFalse(checo1.quiereEntrar(carpaQuilmesNegra));
+		
+		//aleman2 quiere entrar en carpaQuilmesNegra
+		assertTrue(aleman2.quiereEntrar(carpaQuilmesNegra));
+		//ingresa una persona a la carpa
+		carpaQuilmesNegra.ingresarPersona(checo2);
+		//aleman2 no quiere entrar a la carpaQuilmesNegra
+		//por que la cantidad de personas dentro es impar
+		assertFalse(aleman2.quiereEntrar(carpaQuilmesNegra));		
+	}
+	
+	@Test
+	void testCarpaDejaEntrarAPersona() {
+		assertTrue(carpaQuilmesRoja.puedeEntrar(aleman1));
+		assertFalse(aleman1.estaEbria());	
+		aleman1.consumirJarra(jarraCoronaLitro);
+		aleman1.consumirJarra(jarraCoronaLitro);
+		aleman1.consumirJarra(jarraCoronaLitro);
+		assertTrue(aleman1.estaEbria());//aleman1 esta ebrio
+		assertFalse(carpaQuilmesRoja.puedeEntrar(aleman1));//lo cual le impide ingresar
+		
+		assertTrue(carpaQuilmesRoja.puedeEntrar(aleman2));
+		assertTrue(carpaQuilmesRoja.puedeEntrar(belga1));
+		assertTrue(carpaQuilmesRoja.puedeEntrar(belga2));
+		assertTrue(carpaQuilmesRoja.puedeEntrar(checo1));//checo1 puede ingresar
+		assertTrue(carpaQuilmesRoja.puedeEntrar(checo2));
+		//ingresan 3 personas a la carpaQuilmesRoja
+		aleman2.entrarEnCarpa(carpaQuilmesRoja);
+		belga1.entrarEnCarpa(carpaQuilmesRoja);
+		belga2.entrarEnCarpa(carpaQuilmesRoja);
+		assertFalse(carpaQuilmesRoja.puedeEntrar(checo1));//checo1 ya no puede ingresar
+														  //porque supera la capacidad
+	}
+	
+	@Test
+	void testPersonaPuedeEntrarACarpa() {
+		assertTrue(aleman2.puedeEntrar(carpaQuilmesNegra));
+		aleman2.consumirJarra(jarraQuilmesRojLitro);
+		aleman2.consumirJarra(jarraQuilmesRojLitro);
+		aleman2.consumirJarra(jarraQuilmesRojLitro);
+		assertFalse(aleman2.puedeEntrar(carpaQuilmesNegra));
+	}
+	
+	@Test
+	void testPersonaEntraACarpa() {
+		aleman2.entrarEnCarpa(carpaQuilmesNegra);
+		try {
+			aleman1.entrarEnCarpa(carpaQuilmesNegra);
+		}
+		catch(RuntimeException e){
+			System.out.println(e);
+			}
+	}
+	
+	@Test
+	void testEbriosEmpedernidos() {
+		aleman2.entrarEnCarpa(carpaQuilmesRoja);
+		belga1.entrarEnCarpa(carpaQuilmesRoja);
+		belga2.entrarEnCarpa(carpaQuilmesRoja);
+		
+		aleman2.consumirJarra(jarraQuilmesRojLitro);
+		aleman2.consumirJarra(jarraQuilmesRojLitro);
+		aleman2.consumirJarra(jarraQuilmesRojLitro);
+
+		belga1.consumirJarra(jarraQuilmesRojLitro);
+		belga1.consumirJarra(jarraQuilmesRojLitro);
+		belga1.consumirJarra(jarraQuilmesRojLitro);
+
+		belga2.consumirJarra(jarraQuilmesRojMedioLitro);
+		belga2.consumirJarra(jarraQuilmesRojMedioLitro);
+		belga2.consumirJarra(jarraQuilmesRojMedioLitro);
+		
+		assertEquals(2, carpaQuilmesRoja.cantEbriosEmpedernidos());
+	}
+	
+	@Test
+	void testPersonaEsPatriota() {
+		aleman2.consumirJarra(jarraQuilmesRojLitro);
+		aleman2.consumirJarra(jarraQuilmesRojLitro);
+		aleman2.consumirJarra(jarraQuilmesRojLitro);
+		assertTrue(aleman2.esPatriota());
+		aleman2.consumirJarra(jarraQuilmesNLitro);
+		assertFalse(aleman2.esPatriota());
+	}
+	
+	
 
 }
