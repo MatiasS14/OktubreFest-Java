@@ -4,13 +4,13 @@ import java.util.HashSet;
 
 public class Carpa {
 	private Set<Persona> personasEnCarpa;
-	private Jarra jarraCerveza;
+	private Marca marcaJarraCerveza;
 	private Boolean poseeBanda;
 	private Integer limiteCapacidad;
 	
-	public Carpa(Integer limite, Boolean tieneBanda, Jarra jarra) {
+	public Carpa(Integer limite, Boolean tieneBanda, Marca marcaJarra) {
 		this.personasEnCarpa = new HashSet<Persona>();
-		this.jarraCerveza = jarra;
+		this.marcaJarraCerveza = marcaJarra;
 		this.poseeBanda = tieneBanda;
 		this.limiteCapacidad = limite;
 	}
@@ -20,7 +20,7 @@ public class Carpa {
 	}
 	
 	public Marca marcaCervezaALaVenta() {
-		return this.jarraCerveza.marcaCerveza();
+		return this.marcaJarraCerveza;
 	}
 	
 	public Boolean poseeBandaMusica() {
@@ -47,7 +47,7 @@ public class Carpa {
 	private Boolean todasJarrasMinimo1Litro(Persona pers) {
 		Boolean ret = true;
 		for(Jarra jarra : pers.jarrasCompradas()) {
-			ret = ret && jarra.capacidadJarra()>= 1;
+			ret = ret && jarra.capacidadJarra()>= 1000;
 		}
 	  return ret;
 	}
