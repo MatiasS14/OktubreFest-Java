@@ -25,7 +25,7 @@ public abstract class Persona {
 	
 	//Funcion Auxiliar
 	//Proposito : cuenta cuantos litros lleva bebidos la persona
-	private Integer totalLitrosIngeridos() {
+	public Integer totalLitrosIngeridos() {
 		Integer ret= 0;
 		for(Jarra jarra : this.jarrasCompradas) {
 			ret+= jarra.capacidadJarra();
