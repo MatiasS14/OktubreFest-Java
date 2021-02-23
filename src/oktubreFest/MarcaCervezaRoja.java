@@ -7,6 +7,6 @@ public class MarcaCervezaRoja extends MarcaCervezaNegra{
 	}
 	
 	public Float graduacionDeAlcohol() {
-		return super.graduacionDeAlcohol() * 2f;
+		return super.graduacionDeAlcohol() * 1.25f;
 	}
 }
