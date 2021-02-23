@@ -23,12 +23,12 @@ class TestOktubreFest {
 	
 	//Jarras
 		//jarras de medio lirto
-	Jarra jarraQuilmesRMediLitro;
-	Jarra jarraQuilmesNMediLitro;
-	Jarra jarraQuilmesRojMediLitro;
+	Jarra jarraQuilmesRMedioLitro;
+	Jarra jarraQuilmesNMedioLitro;
+	Jarra jarraQuilmesRojMedioLitro;
 	Jarra jarraCoronaMedioLitro;
 		//jarras de un litro
-	Jarra jarra1QuilmesRLitro;
+	Jarra jarraQuilmesRLitro;
 	Jarra jarraQuilmesNLitro;
 	Jarra jarraQuilmesRojLitro;
 	Jarra jarraCoronaLitro;
@@ -57,7 +57,7 @@ class TestOktubreFest {
 		
 //		quilmesRoja : 10gr lupulo por litro
 //		 				origen Alemania
-		quilmesRoja  = new MarcaCervezaNegra(10, "Alemania", graduacionMundialNegra);
+		quilmesRoja  = new MarcaCervezaRoja(10, "Alemania", graduacionMundialNegra);
 		
 //		corona: rubia
 //				  30gr lupulo por litro
@@ -72,14 +72,14 @@ class TestOktubreFest {
 	carpaCorona = new Carpa(3, false, corona);
 	/////////////////////////////////////////////////////////////////
 		//Jarras de 1 litro (la capacidad de la jarra es en mililitros 1000ml = 1lts)
-	jarraQuilmesRMediLitro = new Jarra(1000, quilmesRubia);
-	jarraQuilmesNMediLitro = new Jarra(1000, quilmesNegra);
-	jarraQuilmesRojMediLitro= new Jarra(1000, quilmesRoja);
+	jarraQuilmesRLitro = new Jarra(1000, quilmesRubia);
+	jarraQuilmesNLitro = new Jarra(1000, quilmesNegra);
+	jarraQuilmesRojLitro= new Jarra(1000, quilmesRoja);
 	jarraCoronaLitro = new Jarra(1000, corona);
 		//Jarras de medio litro (la capacidad de la jarra es en mililitros 500ml = 1/2lts)
-	jarraQuilmesRMediLitro = new Jarra(500, quilmesRubia);
-	jarraQuilmesNMediLitro = new Jarra(500, quilmesNegra);
-	jarraQuilmesRojMediLitro = new Jarra(500, quilmesRoja);
+	jarraQuilmesRMedioLitro = new Jarra(500, quilmesRubia);
+	jarraQuilmesNMedioLitro = new Jarra(500, quilmesNegra);
+	jarraQuilmesRojMedioLitro = new Jarra(500, quilmesRoja);
 	jarraCoronaMedioLitro = new Jarra(500, corona);
 	/////////////////////////////////////////////////////////////////
 		//Personas
@@ -104,8 +104,26 @@ class TestOktubreFest {
 	}
 	
 	@Test
-	void test() {
-		assertTrue(true);
+	void testContenidoAlcoholicoJarra() {
+		//contenidoAlcoholico de jarra de cerveza rubia de 1 litro
+		assertEquals(80, jarraQuilmesRLitro.contenidoAlcoholico());
+
+		//contenidoAlcoholico de jarra de cerveza negra de 1 litro
+		assertEquals(150, jarraQuilmesNLitro.contenidoAlcoholico());
+
+		//contenidoAlcoholico de jarra de cerveza roja de 1 litro
+		assertEquals(187.5f, jarraQuilmesRojLitro.contenidoAlcoholico());
+
+		//contenidoAlcoholico de jarra de cerveza rubia de 1/2 litro
+		assertEquals(40, jarraQuilmesRMedioLitro.contenidoAlcoholico());
+
+		//contenidoAlcoholico de jarra de cerveza negra de 1/2 litro
+		assertEquals(75, jarraQuilmesNMedioLitro.contenidoAlcoholico());
+
+		//contenidoAlcoholico de jarra de cerveza Roja de 1/2 litro
+		assertEquals(93.75f, jarraQuilmesRojMedioLitro.contenidoAlcoholico());
+		
+		
 	}
 
 }
