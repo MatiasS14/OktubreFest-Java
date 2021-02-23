@@ -75,4 +75,8 @@ public abstract class Persona {
 	public Set<Jarra> jarrasCompradas(){
 		return this.jarrasCompradas;
 	}
+	
+	public void consumirJarra(Jarra jarra) {
+		this.jarrasCompradas.add(jarra);
+	}
 }
