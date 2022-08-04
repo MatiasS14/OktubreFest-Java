@@ -1,5 +1,14 @@
 package testOktubreFest;
 import oktubreFest.*;
+import oktubreFest.cervezas.Marca;
+import oktubreFest.cervezas.MarcaCervezaNegra;
+import oktubreFest.cervezas.MarcaCervezaRoja;
+import oktubreFest.cervezas.MarcaCervezaRubia;
+import oktubreFest.personas.Persona;
+import oktubreFest.personas.PersonaAlemana;
+import oktubreFest.personas.PersonaBelga;
+import oktubreFest.personas.PersonaCheca;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;

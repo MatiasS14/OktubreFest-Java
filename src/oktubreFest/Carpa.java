@@ -1,5 +1,9 @@
 package oktubreFest;
 import java.util.Set;
+
+import oktubreFest.cervezas.Marca;
+import oktubreFest.personas.Persona;
+
 import java.util.HashSet;
 
 public class Carpa {

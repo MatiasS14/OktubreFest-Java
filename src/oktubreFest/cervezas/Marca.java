@@ -1,4 +1,4 @@
-package oktubreFest;
+package oktubreFest.cervezas;
 
 public abstract class Marca {
 	protected Integer gramosLupuloPorLitro;//gramos de lupulo por litro de cerveza

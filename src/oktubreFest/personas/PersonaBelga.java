@@ -1,4 +1,6 @@
-package oktubreFest;
+package oktubreFest.personas;
+
+import oktubreFest.cervezas.Marca;
 
 public class PersonaBelga extends Persona{
 	

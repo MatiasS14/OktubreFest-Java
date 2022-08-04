@@ -1,4 +1,4 @@
-package oktubreFest;
+package oktubreFest.cervezas;
 
 public class MarcaCervezaRubia extends Marca{
 	private Integer graduacionDeAlcohol;

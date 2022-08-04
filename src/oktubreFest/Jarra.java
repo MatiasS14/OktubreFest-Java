@@ -1,5 +1,7 @@
 package oktubreFest;
 
+import oktubreFest.cervezas.Marca;
+
 public class Jarra {
 	private Marca marcaCerveza;
 	private Integer capacidadJarra;//capacidad en mili litros 

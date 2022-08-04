@@ -1,5 +1,10 @@
-package oktubreFest;
+package oktubreFest.personas;
 import java.util.List;
+
+import oktubreFest.Carpa;
+import oktubreFest.Jarra;
+import oktubreFest.cervezas.Marca;
+
 import java.util.LinkedList;
 
 public abstract class Persona {
