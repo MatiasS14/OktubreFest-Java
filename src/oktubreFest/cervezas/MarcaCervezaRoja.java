@@ -1,9 +1,12 @@
 package oktubreFest.cervezas;
 
+import oktubreFest.borradores.BorradorMarca;
+import oktubreFest.errores.ErrorMarca;
+
 public class MarcaCervezaRoja extends MarcaCervezaNegra{
 
-	public MarcaCervezaRoja(Integer lupuloPorLitro, String pais, Integer graduacionReglamentaria) {
-		super(lupuloPorLitro, pais, graduacionReglamentaria);
+	public MarcaCervezaRoja(BorradorMarca marca) throws ErrorMarca{
+		super(marca);
 	}
 	
 	public Float graduacionDeAlcohol() {

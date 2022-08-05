@@ -2,12 +2,14 @@ package testOktubreFest;
 import oktubreFest.*;
 import oktubreFest.borradores.BorradorCarpa;
 import oktubreFest.borradores.BorradorJarra;
+import oktubreFest.borradores.BorradorMarca;
 import oktubreFest.cervezas.Marca;
 import oktubreFest.cervezas.MarcaCervezaNegra;
 import oktubreFest.cervezas.MarcaCervezaRoja;
 import oktubreFest.cervezas.MarcaCervezaRubia;
 import oktubreFest.errores.ErrorCarpa;
 import oktubreFest.errores.ErrorJarra;
+import oktubreFest.errores.ErrorMarca;
 import oktubreFest.personas.Persona;
 import oktubreFest.personas.PersonaAlemana;
 import oktubreFest.personas.PersonaBelga;
@@ -22,6 +24,13 @@ class TestOktubreFest {
 	
 	//Graduacion mundial reglamentaria para la cerveza negra
 	Integer graduacionMundialNegra;
+	
+	//Borradores marcas
+	BorradorMarca borradorQuilmesRubia;
+	BorradorMarca borradorQuilmesNegra;
+	BorradorMarca borradorQuilmesRoja;
+	BorradorMarca borradorCorona;
+	
 	//Marcas de cervezas
 	Marca quilmesRubia;
 	Marca quilmesNegra;
@@ -73,28 +82,34 @@ class TestOktubreFest {
 	Persona checo2;
 	
 	@BeforeEach
-	void setup() throws ErrorCarpa, ErrorJarra{
+	void setup() throws ErrorCarpa, ErrorJarra, ErrorMarca{
 		//graduacion reglamentaria para la cerveza negra
 		graduacionMundialNegra = 15;
 	/////////////////////////////////////////////////////////////////
+		//borradores marca cerveza
+		borradorQuilmesRubia = new BorradorMarca(20, "Alemania", 8);//20 gr lupulo por litro
+		//origen Alemania
+		//8% de alcohol por litro
+		//quilmesNegra: 10gr lupulo por litro
+		//origen Belgica
+		borradorQuilmesNegra = new BorradorMarca(10, "Belgica", graduacionMundialNegra);
+
+		//quilmesRoja : 10gr lupulo por litro
+		//origen Alemania
+		borradorQuilmesRoja  = new BorradorMarca(10, "Alemania", graduacionMundialNegra);
+
+		//corona: rubia
+		//30gr lupulo por litro
+		//origen Republica Checa
+		//10% alcohol por litro
+		borradorCorona = new BorradorMarca(30, "RepublicaCheca", 10);
+		
 	
 		//marcas de cerveza
-		quilmesRubia = new MarcaCervezaRubia(20, "Alemania", 8);//20 gr lupulo por litro
-																//origen Alemania
-																//8% de alcohol por litro
-//		quilmesNegra: 10gr lupulo por litro
-//						origen Belgica
-		quilmesNegra = new MarcaCervezaNegra(10, "Belgica", graduacionMundialNegra);
-		
-//		quilmesRoja : 10gr lupulo por litro
-//		 				origen Alemania
-		quilmesRoja  = new MarcaCervezaRoja(10, "Alemania", graduacionMundialNegra);
-		
-//		corona: rubia
-//				  30gr lupulo por litro
-//				  origen Republica Checa
-//				  10% alcohol por litro
-		corona		 = new MarcaCervezaRubia(30, "RepublicaCheca", 10);
+		quilmesRubia = new MarcaCervezaRubia(borradorQuilmesRubia);
+		quilmesNegra = new MarcaCervezaNegra(borradorQuilmesNegra);
+		quilmesRoja  = new MarcaCervezaRoja(borradorQuilmesRoja);
+		corona		 = new MarcaCervezaRubia(borradorCorona);
 	/////////////////////////////////////////////////////////////////
 		//Borrador carpas
 	borradorCarpaQuilmesRubia = new BorradorCarpa(30, true, quilmesRubia);
