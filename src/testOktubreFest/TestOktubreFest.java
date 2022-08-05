@@ -3,6 +3,7 @@ import oktubreFest.*;
 import oktubreFest.borradores.BorradorCarpa;
 import oktubreFest.borradores.BorradorJarra;
 import oktubreFest.borradores.BorradorMarca;
+import oktubreFest.borradores.BorradorPersona;
 import oktubreFest.cervezas.Marca;
 import oktubreFest.cervezas.MarcaCervezaNegra;
 import oktubreFest.cervezas.MarcaCervezaRoja;
@@ -10,6 +11,7 @@ import oktubreFest.cervezas.MarcaCervezaRubia;
 import oktubreFest.errores.ErrorCarpa;
 import oktubreFest.errores.ErrorJarra;
 import oktubreFest.errores.ErrorMarca;
+import oktubreFest.errores.ErrorPersona;
 import oktubreFest.personas.Persona;
 import oktubreFest.personas.PersonaAlemana;
 import oktubreFest.personas.PersonaBelga;
@@ -72,7 +74,15 @@ class TestOktubreFest {
 	Jarra jarraQuilmesNLitro;
 	Jarra jarraQuilmesRojLitro;
 	Jarra jarraCoronaLitro;
-
+	
+	//Borradores personas
+	BorradorPersona borradorAleman1;
+	BorradorPersona borradorAleman2;
+	BorradorPersona borradorBelga1;
+	BorradorPersona borradorBelga2;
+	BorradorPersona borradorCheco1;
+	BorradorPersona borradorCheco2;
+	
 	//Personas
 	Persona aleman1;
 	Persona aleman2;
@@ -82,7 +92,7 @@ class TestOktubreFest {
 	Persona checo2;
 	
 	@BeforeEach
-	void setup() throws ErrorCarpa, ErrorJarra, ErrorMarca{
+	void setup() throws ErrorCarpa, ErrorJarra, ErrorMarca, ErrorPersona{
 		//graduacion reglamentaria para la cerveza negra
 		graduacionMundialNegra = 15;
 	/////////////////////////////////////////////////////////////////
@@ -145,23 +155,44 @@ class TestOktubreFest {
 	jarraQuilmesRojMedioLitro = new Jarra(borradorJarraQuilmesRojMedioLitro);
 	jarraCoronaMedioLitro = new Jarra(borradorJarraCoronaMedioLitro);
 	/////////////////////////////////////////////////////////////////
+
+		//Borradores personas
+	borradorAleman1 = new BorradorPersona(80, false, 1000); //pesa 80ks, no le gusta la musica,
+	  //su nivel de aguante es 1000
+
+	borradorAleman2 = new BorradorPersona(74, true, 500);//pesa 74 ks, le gusta la musica,
+		//su nivel de aguante es 500
+
+	borradorBelga1	= new BorradorPersona(100, true, 2000);//pesa 100kg, le gusta la musica,
+	//su nivel de aguante es 2000
+
+	borradorBelga2  = new BorradorPersona(90, true, 1500);//pesa 90kg, le gusta la musica,
+	//su nivel de auguante es de 1500
+
+	borradorCheco1 	= new BorradorPersona(150, false, 100);//pesa 150kg, no le gusta la musica
+	 //su nivel de aguante es de 100,
+
+	borradorCheco2	= new BorradorPersona(70, true, 2000);//pesa 70kg, le gusta la musica,
+	//su nivel de aguante es de 2000
+
+	   
 		//Personas
-	aleman1 = new PersonaAlemana(80, false, 1000); //pesa 80ks, no le gusta la musica,
+	aleman1 = new PersonaAlemana(borradorAleman1); //pesa 80ks, no le gusta la musica,
 												   //su nivel de aguante es 1000
 	
-	aleman2 = new PersonaAlemana(74, true, 500);//pesa 74 ks, le gusta la musica,
+	aleman2 = new PersonaAlemana(borradorAleman2);//pesa 74 ks, le gusta la musica,
 											    //su nivel de aguante es 500
 	
-	belga1	= new PersonaBelga(100, true, 2000);//pesa 100kg, le gusta la musica,
+	belga1	= new PersonaBelga(borradorBelga1);//pesa 100kg, le gusta la musica,
 												//su nivel de aguante es 2000
 	
-	belga2  = new PersonaBelga(90, true, 1500);//pesa 90kg, le gusta la musica,
+	belga2  = new PersonaBelga(borradorBelga2);//pesa 90kg, le gusta la musica,
 											   //su nivel de auguante es de 1500
 	
-	checo1 	= new PersonaCheca(150, false, 100);//pesa 150kg, no le gusta la musica
+	checo1 	= new PersonaCheca(borradorCheco1);//pesa 150kg, no le gusta la musica
 											    //su nivel de aguante es de 100,
 			
-	checo2	= new PersonaCheca(70, true, 2000);//pesa 70kg, le gusta la musica,
+	checo2	= new PersonaCheca(borradorCheco2);//pesa 70kg, le gusta la musica,
 											   //su nivel de aguante es de 2000
 	
 	}

@@ -1,12 +1,14 @@
 package oktubreFest.personas;
 
 import oktubreFest.Carpa;
+import oktubreFest.borradores.BorradorPersona;
 import oktubreFest.cervezas.Marca;
+import oktubreFest.errores.ErrorPersona;
 
 public class PersonaAlemana extends Persona{
 	
-	public PersonaAlemana(Integer peso, Boolean leGustaMusica, Integer aguante) {
-		super(peso, leGustaMusica, aguante);
+	public PersonaAlemana(BorradorPersona persona) throws ErrorPersona{
+		super(persona);
 	}
 	
 	public String pais() {

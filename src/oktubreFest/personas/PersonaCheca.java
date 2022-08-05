@@ -1,11 +1,13 @@
 package oktubreFest.personas;
 
+import oktubreFest.borradores.BorradorPersona;
 import oktubreFest.cervezas.Marca;
+import oktubreFest.errores.ErrorPersona;
 
 public class PersonaCheca extends Persona{
 	
-	public PersonaCheca(Integer peso, Boolean leGustaMusica, Integer aguante) {
-		super(peso, leGustaMusica, aguante);
+	public PersonaCheca(BorradorPersona persona) throws ErrorPersona{
+		super(persona);
 	}
 
 	@Override

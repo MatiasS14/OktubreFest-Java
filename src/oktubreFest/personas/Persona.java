@@ -3,7 +3,9 @@ import java.util.List;
 
 import oktubreFest.Carpa;
 import oktubreFest.Jarra;
+import oktubreFest.borradores.BorradorPersona;
 import oktubreFest.cervezas.Marca;
+import oktubreFest.errores.ErrorPersona;
 
 import java.util.LinkedList;
 
@@ -14,11 +16,17 @@ public abstract class Persona {
 	protected List<Jarra> jarrasCompradas;
 	protected String paisPersona;
 	
-	public Persona(Integer peso, Boolean leGustaMusica, Integer nivelAguante) {
-		this.pesoEnKilos = peso;
-		this.leGustaLaMusica = leGustaMusica;
-		this.nivelDeAguante = nivelAguante;
+	public Persona(BorradorPersona persona) throws ErrorPersona{
+		verificarPersona(persona);
+		this.pesoEnKilos = persona.peso;
+		this.leGustaLaMusica = persona.leGustaMusica;
+		this.nivelDeAguante = persona.nivelAguante;
 		this.jarrasCompradas = new LinkedList<Jarra>();
+	}
+	
+	private void verificarPersona(BorradorPersona persona) throws ErrorPersona{
+		if(persona.peso < 1) {throw new ErrorPersona("La persona debe tenes un peso mayor a 1");}
+		if(persona.nivelAguante == 0 ) {throw new ErrorPersona("La persona debe tener al menos 1 de aguante");}
 	}
 	
 	public Boolean estaEbria() {
