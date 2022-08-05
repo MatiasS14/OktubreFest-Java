@@ -1,9 +1,11 @@
 package testOktubreFest;
 import oktubreFest.*;
+import oktubreFest.borradores.BorradorCarpa;
 import oktubreFest.cervezas.Marca;
 import oktubreFest.cervezas.MarcaCervezaNegra;
 import oktubreFest.cervezas.MarcaCervezaRoja;
 import oktubreFest.cervezas.MarcaCervezaRubia;
+import oktubreFest.errores.ErrorCarpa;
 import oktubreFest.personas.Persona;
 import oktubreFest.personas.PersonaAlemana;
 import oktubreFest.personas.PersonaBelga;
@@ -23,6 +25,12 @@ class TestOktubreFest {
 	Marca quilmesNegra;
 	Marca quilmesRoja;
 	Marca corona;
+	
+	//Borrador carpa
+	BorradorCarpa borradorCarpaQuilmesRubia;
+	BorradorCarpa borradorCarpaQuilmesNegra;
+	BorradorCarpa borradorCarpaQuilmesRoja;
+	BorradorCarpa borradorCarpaCorona;
 
 	//Carpas
 	Carpa carpaQuilmesRubia;
@@ -51,7 +59,7 @@ class TestOktubreFest {
 	Persona checo2;
 	
 	@BeforeEach
-	void setup() {
+	void setup() throws ErrorCarpa{
 		//graduacion reglamentaria para la cerveza negra
 		graduacionMundialNegra = 15;
 	/////////////////////////////////////////////////////////////////
@@ -74,11 +82,16 @@ class TestOktubreFest {
 //				  10% alcohol por litro
 		corona		 = new MarcaCervezaRubia(30, "RepublicaCheca", 10);
 	/////////////////////////////////////////////////////////////////
+		//Borrador carpas
+	borradorCarpaQuilmesRubia = new BorradorCarpa(30, true, quilmesRubia);
+	borradorCarpaQuilmesNegra = new BorradorCarpa(30, true, quilmesNegra);
+	borradorCarpaQuilmesRoja  = new BorradorCarpa(3, true, quilmesRoja);
+	borradorCarpaCorona       = new BorradorCarpa(3, false, corona);
 		//Carpas
-	carpaQuilmesRubia = new Carpa(30, true, quilmesRubia);
-	carpaQuilmesNegra= new Carpa(30, true, quilmesNegra);
-	carpaQuilmesRoja= new Carpa(3, true, quilmesRoja);
-	carpaCorona = new Carpa(3, false, corona);
+	carpaQuilmesRubia = new Carpa(borradorCarpaQuilmesRubia);
+	carpaQuilmesNegra= new Carpa(borradorCarpaQuilmesNegra);
+	carpaQuilmesRoja= new Carpa(borradorCarpaQuilmesRoja);
+	carpaCorona = new Carpa(borradorCarpaCorona);
 	/////////////////////////////////////////////////////////////////
 		//Jarras de 1 litro (la capacidad de la jarra es en mililitros 1000ml = 1lts)
 	jarraQuilmesRLitro = new Jarra(1000, quilmesRubia);
