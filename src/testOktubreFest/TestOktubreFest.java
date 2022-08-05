@@ -1,11 +1,13 @@
 package testOktubreFest;
 import oktubreFest.*;
 import oktubreFest.borradores.BorradorCarpa;
+import oktubreFest.borradores.BorradorJarra;
 import oktubreFest.cervezas.Marca;
 import oktubreFest.cervezas.MarcaCervezaNegra;
 import oktubreFest.cervezas.MarcaCervezaRoja;
 import oktubreFest.cervezas.MarcaCervezaRubia;
 import oktubreFest.errores.ErrorCarpa;
+import oktubreFest.errores.ErrorJarra;
 import oktubreFest.personas.Persona;
 import oktubreFest.personas.PersonaAlemana;
 import oktubreFest.personas.PersonaBelga;
@@ -38,6 +40,18 @@ class TestOktubreFest {
 	Carpa carpaQuilmesRoja;
 	Carpa carpaCorona;
 	
+	//Borradores jarras
+	//1 Litro
+	BorradorJarra borradorJarraQuilmesRLitro;
+	BorradorJarra borradorJarraQuilmesNLitro;
+	BorradorJarra borradorJarraQuilmesRojLitro;
+	BorradorJarra borradorJarraCoronaLitro;
+	//Medio litro
+	BorradorJarra borradorJarraQuilmesRMedioLitro;
+	BorradorJarra borradorJarraQuilmesNMedioLitro;
+	BorradorJarra borradorJarraQuilmesRojMedioLitro;
+	BorradorJarra borradorJarraCoronaMedioLitro;
+	
 	//Jarras
 		//jarras de medio lirto
 	Jarra jarraQuilmesRMedioLitro;
@@ -59,7 +73,7 @@ class TestOktubreFest {
 	Persona checo2;
 	
 	@BeforeEach
-	void setup() throws ErrorCarpa{
+	void setup() throws ErrorCarpa, ErrorJarra{
 		//graduacion reglamentaria para la cerveza negra
 		graduacionMundialNegra = 15;
 	/////////////////////////////////////////////////////////////////
@@ -93,16 +107,28 @@ class TestOktubreFest {
 	carpaQuilmesRoja= new Carpa(borradorCarpaQuilmesRoja);
 	carpaCorona = new Carpa(borradorCarpaCorona);
 	/////////////////////////////////////////////////////////////////
+		//Borradores jarras
+		//1 Litro
+	borradorJarraQuilmesRLitro = new BorradorJarra(1000, quilmesRubia);
+	borradorJarraQuilmesNLitro = new BorradorJarra(1000, quilmesNegra);
+	borradorJarraQuilmesRojLitro= new BorradorJarra(1000, quilmesRoja);
+	borradorJarraCoronaLitro = new BorradorJarra(1000, corona);
+		//Medio litro
+	borradorJarraQuilmesRMedioLitro = new BorradorJarra(500, quilmesRubia);
+	borradorJarraQuilmesNMedioLitro = new BorradorJarra(500, quilmesNegra);
+	borradorJarraQuilmesRojMedioLitro = new BorradorJarra(500, quilmesRoja);
+	borradorJarraCoronaMedioLitro = new BorradorJarra(500, corona);
+	
 		//Jarras de 1 litro (la capacidad de la jarra es en mililitros 1000ml = 1lts)
-	jarraQuilmesRLitro = new Jarra(1000, quilmesRubia);
-	jarraQuilmesNLitro = new Jarra(1000, quilmesNegra);
-	jarraQuilmesRojLitro= new Jarra(1000, quilmesRoja);
-	jarraCoronaLitro = new Jarra(1000, corona);
+	jarraQuilmesRLitro = new Jarra(borradorJarraQuilmesRLitro);
+	jarraQuilmesNLitro = new Jarra(borradorJarraQuilmesNLitro);
+	jarraQuilmesRojLitro= new Jarra(borradorJarraQuilmesRojLitro);
+	jarraCoronaLitro = new Jarra(borradorJarraCoronaLitro);
 		//Jarras de medio litro (la capacidad de la jarra es en mililitros 500ml = 1/2lts)
-	jarraQuilmesRMedioLitro = new Jarra(500, quilmesRubia);
-	jarraQuilmesNMedioLitro = new Jarra(500, quilmesNegra);
-	jarraQuilmesRojMedioLitro = new Jarra(500, quilmesRoja);
-	jarraCoronaMedioLitro = new Jarra(500, corona);
+	jarraQuilmesRMedioLitro = new Jarra(borradorJarraQuilmesRMedioLitro);
+	jarraQuilmesNMedioLitro = new Jarra(borradorJarraQuilmesNMedioLitro);
+	jarraQuilmesRojMedioLitro = new Jarra(borradorJarraQuilmesRojMedioLitro);
+	jarraCoronaMedioLitro = new Jarra(borradorJarraCoronaMedioLitro);
 	/////////////////////////////////////////////////////////////////
 		//Personas
 	aleman1 = new PersonaAlemana(80, false, 1000); //pesa 80ks, no le gusta la musica,
